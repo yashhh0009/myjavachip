@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page {
+    display: none;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.page:first-child {
+    display: block;
+}
+
+button {
+    font-size: 1.2rem;
+    padding: 12px 25px;
+    margin: 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: 0.3s ease;
+}
+
+#yesButton {
+    background-color: #28a745;
+    color: white;
+    box-shadow: 0 5px 10px rgba(40, 167, 69, 0.2);
+}
+
+#yesButton:hover {
+    background-color: #218838;
+}
+
+#noButton {
+    background-color: #dc3545;
+    color: white;
+    box-shadow: 0 5px 10px rgba(220, 53, 69, 0.2);
+    position: absolute;
+}
+
+#noButton:hover {
+    background-color: #c82333;
+}
