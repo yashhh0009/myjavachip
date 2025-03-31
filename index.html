@@ -7,8 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <audio id="bg-music" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+    <div id="music-container">
+        <button id="music-btn">🎵 Play Music</button>
+    </div>
+
+    <canvas id="fireworks"></canvas>
+
     <div class="container">
-        <div class="page" id="page1">Hi,<br><br>I want to share something with you.<br>I couldn’t keep up with myself.</div>
+        <div class="page" id="page1">
+            <p id="message"></p>
+        </div>
         <div class="page" id="page2">Ananya, we were together, and I cherished every second of it—from our first pool game to our last goodbye.</div>
         <div class="page" id="page3">But at the same time, I don’t see the stars aligning for us, which is why I haven’t thought much about it.</div>
         <div class="page" id="page4">Par ek baat jo kabhi keh nahi paya,<br>Jo ab tumse share karna chahta hu.</div>
@@ -23,6 +34,7 @@
             <button id="noButton">No</button>
         </div>
     </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
