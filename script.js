@@ -7,18 +7,23 @@ document.addEventListener("DOMContentLoaded", function() {
     let musicBtn = document.getElementById("music-btn");
     let speed = 1;
 
-    // Typing Effect for First Page
-    let messageText = "Hi,\n\nI want to share something with you.\nI couldn’t keep up with myself.";
-    let index = 0;
-
-    function typeEffect() {
-        if (index < messageText.length) {
-            document.getElementById("message").innerHTML += messageText.charAt(index);
-            index++;
-            setTimeout(typeEffect, 50);
+    function typeEffect(element, text, index = 0) {
+        if (index < text.length) {
+            element.innerHTML += text.charAt(index);
+            setTimeout(() => typeEffect(element, text, index + 1), 50);
         }
     }
-    typeEffect();
+
+    function startTypingEffect() {
+        let messages = document.querySelectorAll(".message");
+        messages.forEach(message => {
+            let text = message.getAttribute("data-text");
+            message.innerHTML = ""; // Clear existing text
+            typeEffect(message, text);
+        });
+    }
+
+    startTypingEffect();
 
     // Show next page on click
     document.body.addEventListener("click", function() {
@@ -29,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Moving "No" Button (Gets Faster)
+    // Moving "No" Button (Random but Controlled)
     noButton.addEventListener("mouseover", function() {
         let x = Math.random() * (window.innerWidth - 200);
         let y = Math.random() * (window.innerHeight - 100);
@@ -37,8 +42,8 @@ document.addEventListener("DOMContentLoaded", function() {
         noButton.style.position = "absolute";
         noButton.style.left = `${x}px`;
         noButton.style.top = `${y}px`;
-        speed += 0.5;
-        noButton.style.transition = `${speed}s`;
+        speed += 0.3;
+        noButton.style.transition = `0.2s`;
     });
 
     // Play/Pause Music
