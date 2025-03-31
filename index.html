@@ -5,29 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Ananya</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <audio id="bg-music" loop>
-        <source src="song.mp3" type="audio/mpeg">
+        <source src="matargasti.mp3" type="audio/mpeg">
     </audio>
-    <div id="music-container">
-        <button id="music-btn">🎵 Play Music</button>
-    </div>
-
-    <canvas id="fireworks"></canvas>
 
     <div class="container">
-        <div class="page" id="page1"><p class="message" data-text="Hi,\n\nI want to share something with you.\nI couldn’t keep up with myself."></p></div>
-        <div class="page" id="page2"><p class="message" data-text="Ananya, we were together, and I cherished every second of it—from our first pool game to our last goodbye."></p></div>
-        <div class="page" id="page3"><p class="message" data-text="But at the same time, I don’t see the stars aligning for us, which is why I haven’t thought much about it."></p></div>
-        <div class="page" id="page4"><p class="message" data-text="Par ek baat jo kabhi keh nahi paya,\nJo ab tumse share karna chahta hu."></p></div>
-        <div class="page" id="page5">
-            <p class="message" data-text="Agar anytime in future we get an opportunity,\nToh tumhare saath sookhi roti ka toh nahi pata,\nLekin ek Gujarati jinki dal bhi meethi hoti hai,\nUsse 'something less sweet' pasand aata hai.\n\nJust for a day we align stars for us and\nWill you be the Java Chip to my Choco Frappe?"></p>
-            <button id="yesButton">Yes</button>
-            <button id="noButton">No</button>
+        <div class="page" id="page1">
+            <button id="start-btn">Click to Start</button>
+        </div>
+
+        <div class="page" id="blank-page" style="height: 50px;"></div>
+        <div class="page text-page" id="page2" data-text="I want to share something with you. I couldn’t keep up with myself."></div>
+        <div class="page text-page" id="page3" data-text="Ananya, we were together, and I cherished every second of it—from our first pool game to our last goodbye."></div>
+        <div class="page text-page" id="page4" data-text="But at the same time, I don’t see the stars align for us, which is why I haven’t thought much about it."></div>
+        <div class="page text-page" id="page5" data-text="Par ek baat jo kabhi keh nahi paya, jo ab tumse share karna chahta hu."></div>
+
+        <div class="page text-page" id="page6" data-text="Agar anytime in future we get an opportunity, toh tumhare saath sookhi roti ka toh nahi pata, lekin ek Gujarati jinki dal bhi meethi hoti hai, usse 'something less sweet' pasand aata hai. Just for a day we align stars for us and... Will you be the Java Chip to my Choco Frappe?">
+            <div class="buttons">
+                <button id="yesButton">Yes</button>
+                <button id="noButton">No</button>
+            </div>
+            <img src="javachip.png" alt="Ananya and You" class="last-image" style="display: block; max-width: 100%; height: auto; border-radius: 15px; margin-top: 20px;">
         </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>

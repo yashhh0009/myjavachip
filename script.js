@@ -4,37 +4,46 @@ document.addEventListener("DOMContentLoaded", function() {
     let noButton = document.getElementById("noButton");
     let yesButton = document.getElementById("yesButton");
     let music = document.getElementById("bg-music");
-    let musicBtn = document.getElementById("music-btn");
-    let speed = 1;
+    let startBtn = document.getElementById("start-btn");
 
-    function typeEffect(element, text, index = 0) {
-        if (index < text.length) {
-            element.innerHTML += text.charAt(index);
-            setTimeout(() => typeEffect(element, text, index + 1), 50);
-        }
-    }
+    // Start Music & Show Blank Page
+    startBtn.addEventListener("click", function() {
+        music.play();
+        pages[currentPage].style.display = "none"; // Hide start page
+        currentPage++;
+        pages[currentPage].style.display = "block"; // Show blank page
+    });
 
-    function startTypingEffect() {
-        let messages = document.querySelectorAll(".message");
-        messages.forEach(message => {
-            let text = message.getAttribute("data-text");
-            message.innerHTML = ""; // Clear existing text
-            typeEffect(message, text);
-        });
-    }
-
-    startTypingEffect();
-
-    // Show next page on click
-    document.body.addEventListener("click", function() {
-        if (currentPage < pages.length - 1) {
+    // Show Next Page on Click with Typing Effect
+    document.body.addEventListener("click", function(event) {
+        if (event.target !== startBtn && currentPage < pages.length - 1) {
             pages[currentPage].style.display = "none";
             currentPage++;
             pages[currentPage].style.display = "block";
+
+            if (pages[currentPage].classList.contains("text-page")) {
+                typeEffect(pages[currentPage]);
+            }
         }
     });
 
-    // Moving "No" Button (Random but Controlled)
+    // Typing Effect for All Pages
+    function typeEffect(element) {
+        let text = element.getAttribute("data-text");
+        element.textContent = "";
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                element.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, 50);
+            }
+        }
+        type();
+    }
+
+    // Moving "No" Button (Gets Faster)
     noButton.addEventListener("mouseover", function() {
         let x = Math.random() * (window.innerWidth - 200);
         let y = Math.random() * (window.innerHeight - 100);
@@ -42,19 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
         noButton.style.position = "absolute";
         noButton.style.left = `${x}px`;
         noButton.style.top = `${y}px`;
-        speed += 0.3;
-        noButton.style.transition = `0.2s`;
-    });
-
-    // Play/Pause Music
-    musicBtn.addEventListener("click", function() {
-        if (music.paused) {
-            music.play();
-            musicBtn.textContent = "⏸ Pause Music";
-        } else {
-            music.pause();
-            musicBtn.textContent = "🎵 Play Music";
-        }
     });
 
     // Fireworks Effect on "Yes"
@@ -64,10 +60,16 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function startFireworks() {
-        let canvas = document.getElementById("fireworks");
+        let canvas = document.createElement("canvas");
+        document.body.appendChild(canvas);
         let ctx = canvas.getContext("2d");
+
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        canvas.style.position = "fixed";
+        canvas.style.top = "0";
+        canvas.style.left = "0";
+        canvas.style.pointerEvents = "none";
 
         function createFirework(x, y) {
             for (let i = 0; i < 50; i++) {
