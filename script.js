@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     let pages = document.querySelectorAll(".page");
     let currentPage = 0;
     let noButton = document.getElementById("noButton");
@@ -6,17 +6,15 @@ document.addEventListener("DOMContentLoaded", function() {
     let music = document.getElementById("bg-music");
     let startBtn = document.getElementById("start-btn");
 
-    // Start Music & Show Blank Page
-    startBtn.addEventListener("click", function() {
+    startBtn.addEventListener("click", function () {
         music.play();
-        pages[currentPage].style.display = "none"; // Hide start page
+        pages[currentPage].style.display = "none";
         currentPage++;
-        pages[currentPage].style.display = "block"; // Show blank page
+        pages[currentPage].style.display = "block";
     });
 
-    // Show Next Page on Click with Typing Effect
-    document.body.addEventListener("click", function(event) {
-        if (event.target !== startBtn && currentPage < pages.length - 1) {
+    document.body.addEventListener("click", function (event) {
+        if (event.target !== startBtn && !event.target.closest(".buttons") && currentPage < pages.length - 1) {
             pages[currentPage].style.display = "none";
             currentPage++;
             pages[currentPage].style.display = "block";
@@ -27,35 +25,29 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Typing Effect for All Pages
     function typeEffect(element) {
-        let text = element.getAttribute("data-text");
-        element.textContent = "";
-        let index = 0;
+        const text = element.getAttribute("data-text");
+        let i = 0;
+        const target = element.querySelector(".typed-text") || element;
+        target.textContent = "";
 
-        function type() {
-            if (index < text.length) {
-                element.textContent += text.charAt(index);
-                index++;
-                setTimeout(type, 50);
-            }
-        }
-        type();
+        const interval = setInterval(() => {
+            target.textContent += text.charAt(i);
+            i++;
+            if (i === text.length) clearInterval(interval);
+        }, 40);
     }
 
-    // Moving "No" Button (Gets Faster)
-    noButton.addEventListener("mouseover", function() {
+    noButton.addEventListener("mouseover", function () {
         let x = Math.random() * (window.innerWidth - 200);
         let y = Math.random() * (window.innerHeight - 100);
-
         noButton.style.position = "absolute";
         noButton.style.left = `${x}px`;
         noButton.style.top = `${y}px`;
     });
 
-    // Fireworks Effect on "Yes"
-    yesButton.addEventListener("click", function() {
-        startFireworks();
+    yesButton.addEventListener("click", function () {
+        
         setTimeout(() => alert("Yay! Java Chip & Choco Frappe forever ❤️☕"), 1000);
     });
 
@@ -81,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }, i * 50);
             }
         }
+
         createFirework(window.innerWidth / 2, window.innerHeight / 2);
     }
 });
